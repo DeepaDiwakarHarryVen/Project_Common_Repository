@@ -1,0 +1,85 @@
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.ui.Select;
+
+public class PepboysLogin {
+
+	public static void main(String[] args) throws InterruptedException {
+		//System.setProperty("webdriver.gecko.driver","G:\\Selenium\\Firefox driver\\geckodriver.exe");
+		WebDriver driver = new FirefoxDriver();
+		driver.get("https://www.pepboys.com");
+		driver.manage().window().maximize();
+		
+		//Login
+		Thread.sleep(8000);
+		driver.findElement(By.xpath("html/body/header/div[1]/div/div/div[1]/a")).click();
+		driver.findElement(By.xpath(".//*[@id='j_username']")).sendKeys("hinadholakia@yahoo.com");
+		driver.findElement(By.xpath(".//*[@id='j_password']")).sendKeys("Welcome1");
+		driver.findElement(By.xpath("html/body/div[4]/div[3]/div/div[1]/form/button")).click();
+		
+		//Click on Products
+		Thread.sleep(5000);
+		driver.findElement(By.linkText("Products")).click();
+		//driver.findElement(By.xpath("html/body/header/div[2]/nav/ul/li[3]/a/span")).click();
+		
+		//Select Tires		
+		Thread.sleep(5000);		
+		driver.findElement(By.xpath("//div[@class='primary-nav-container']/nav/ul/li[3]/ul/li/div/div[2]/div[2]/div[1]/ul/li[1]/a")).click();
+		Thread.sleep(8000);
+		
+		//Selecting from Drop-Downs		
+		Select sel1=new Select(driver.findElement(By.xpath(".//*[@id='sby']/div/div[2]/div/div[1]/div/div/div/select[1]")));
+  	  	sel1.selectByVisibleText("2015");	
+  	  	
+  	  	Select sel2=new Select(driver.findElement(By.xpath(".//*[@id='sby']/div/div[2]/div/div[1]/div/div/div/select[2]")));
+	  	sel2.selectByVisibleText("ACURA");	
+	  	
+	  	Select sel3=new Select(driver.findElement(By.xpath(".//*[@id='sby']/div/div[2]/div/div[1]/div/div/div/select[3]")));
+  	  	sel3.selectByVisibleText("MDX");	
+  	  	
+  	  	Select sel4=new Select(driver.findElement(By.xpath(".//*[@id='sby']/div/div[2]/div/div[1]/div/div/div/select[4]")));
+	  	sel4.selectByVisibleText("V6-3471 3.5L SOHC");	
+	  	
+	  	Select sel5=new Select(driver.findElement(By.xpath(".//*[@id='sby']/div/div[2]/div/div[1]/div/div/div/select[5]")));
+  	  	sel5.selectByVisibleText("4WD/AWD");	
+  	  	
+  	  	Select sel6=new Select(driver.findElement(By.xpath(".//*[@id='sby']/div/div[2]/div/div[1]/div/div/div/select[6]")));
+	  	sel6.selectByVisibleText("BASE SH-AWD");
+  	  		  	
+	  	Select sel7=new Select(driver.findElement(By.xpath(".//*[@id='sby']/div/div[2]/div/div[1]/div/div/div/select[7]")));
+  	  	sel7.selectByVisibleText("245/55R19");
+  	  	
+  	  	//Click on Next  	  	
+  	  	Thread.sleep(3000);  	  	
+  	  	driver.findElement(By.xpath(".//*[@id='sby']/div/div[2]/div/div[2]/div/button")).click();
+  	 			
+		//Selecting Tire Quantity  	  	
+  	  	Select sel8=new Select(driver.findElement(By.xpath(".//*[@id='quantity-for-sku-1319385']")));
+	  	sel8.selectByVisibleText("4");
+	  	
+	  	//Checking the Radio Button
+	  	driver.findElement(By.xpath(".//*[@id='radio-INSTALLATION-1319385']")).click();
+	  	
+	  	//Adding to Cart
+	  	driver.findElement(By.xpath(".//*[@id='resultsItem1006755']/div[1]/div[3]/div/div[2]/button")).click();
+	  	Thread.sleep(5000);
+	  	
+	  	//View the Cart
+	  	driver.findElement(By.xpath("html/body/div[3]/header/div[1]/div/div/div[2]/a")).click();
+	  	Thread.sleep(8000);
+	  	
+	  	//Empty the Cart
+	  	driver.findElement(By.xpath(".//*[@id='options']/a[2]")).click();
+	  	driver.findElement(By.xpath("html/body/div[7]/div/div/div[2]/div/button[1]")).click();
+	  	Thread.sleep(5000);
+	  	
+	  	//Exit Application
+  	  	driver.quit();
+  	  	
+		}
+
+}
+Pepboys-Login-01-22-2017 _Heena.txt
+Open with
+Displaying Pepboys-Login-01-22-2017 _Heena.txt.
