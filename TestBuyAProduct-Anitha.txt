@@ -1,0 +1,86 @@
+package com.pepboys.automation;
+
+import java.util.Set;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.Select;
+import org.testng.annotations.Test;
+
+public class TestBuyAProduct extends PepboysTestSetup {
+  @Test //Marks a class or a method as part of the test.
+  public void TestBuy() {
+	  
+	  try{   
+	    	driver.get(baseUrl); 
+	    	
+	        //for popup window
+	        Set<String> availableWindows = driver.getWindowHandles(); 
+	        if (!availableWindows.isEmpty()) { 
+	             for (String windowId : availableWindows) {
+	                  String switchedWindowTitle=driver.switchTo().window(windowId).getTitle();
+	                  System.out.println("Window Title:"+switchedWindowTitle);
+	              } 
+	         } 
+	        
+	        
+	        driver.findElement(By.xpath("//*/span[text()='Products']")).click();
+	       
+	        driver.findElement(By.xpath("//a[.='Sale & Clearance']")).click();
+	        driver.findElement(By.xpath("//a[.='Sale Car Care']")).click();
+	        
+	        
+	        driver.findElement(By.xpath("//a[contains(@href, '555355')]")).click();
+	        
+	        //Selecting the quantity to order
+	        Select selectElement = new Select(driver.findElement(By.id("quantity-for-sku-555355")));
+	        selectElement.selectByIndex(1); 
+	        
+                 
+	        
+	        Thread.sleep(2000);
+	        WebElement radioBtn = driver.findElement(By.xpath(".//*[@id='radio-PHYSICAL_SHIP-555355']"));
+	        //sometimes radio buttons and other controls dont respond to click() 
+	        radioBtn.sendKeys(Keys.SPACE);
+          
+          Thread.sleep(5000);
+    	        	        
+	        WebElement element1 = driver.findElement(By.xpath(".//*[@id='container']/div[3]/div[3]/div/div/div[4]/div[3]/div/div[2]/button"));
+	     
+	        		
+	        if(element1 != null) //if the element exist
+	        {
+	        	System.out.println("Found the Add Cart Place");
+	        	element1.click();
+	        }
+	        else{
+	        	
+	        	System.out.println("Couldn't find the Add Cart Place");
+	        }
+	        
+	        Thread.sleep(5000);
+	      driver.findElement(By.xpath("//button[.='View Cart']")).click();
+	      Thread.sleep(5000);
+	      driver.findElement(By.xpath("//a[.='Remove']")).click();
+	      Thread.sleep(5000);
+	      //driver.findElement(By.xpath("//a[.='Remove']")).click();
+	    //  Thread.sleep(5000);
+	      
+
+	        
+	      }catch(Exception e)
+	     //error message will be printed in the out console
+	      {
+	    	System.out.println(e.getMessage());    	
+	    	e.printStackTrace(System.out);
+	     }
+		
+
+	}
+
+	  
+	  
+  }
+
+
