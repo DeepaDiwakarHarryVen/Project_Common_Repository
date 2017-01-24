@@ -1,0 +1,51 @@
+package products;
+
+import java.util.NoSuchElementException;
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.firefox.FirefoxDriver;
+
+public class SearchInProductsTab {
+
+	public static void main(String[] args) throws InterruptedException{
+		// TODO Auto-generated method stub
+		
+			System.setProperty("webdriver.gecko.driver", "C:\\Users\\Sree\\workspace\\geckodriver.exe");
+			WebDriver driver=new FirefoxDriver();
+			driver.get("https://www.pepboys.com/");
+			driver.get("https://www.pepboys.com/");
+			driver.manage().window().maximize();
+			driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+			driver.findElement(By.xpath(".//span[text()='Products']")).click();
+			driver.findElement(By.linkText("Sale & Clearance")).click();
+			driver.findElement(By.id("sidebarSearchText")).sendKeys("tires");
+			driver.findElement(By.xpath(".//*[@id='sidebarSearchForm']/div[1]/button")).click();
+			try{
+			WebElement Title=driver.findElement(By.xpath(".//a[text()='Shop for Tires']"));
+			if(Title.toString().isEmpty()){
+			//System.out.println(Title);
+			System.out.println("wrong page1");
+			}else
+			{
+				//System.out.println(Title);
+				System.out.println("test pass");
+			}
+			}
+			catch(NoSuchElementException e)
+			{
+				System.out.println("Wrong page -no such element");
+			}
+			catch(Exception j)
+
+			{
+				System.out.println("wrong page2 ");
+			}
+
+		}
+
+	}
+
+
