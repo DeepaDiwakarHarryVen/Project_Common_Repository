@@ -81,5 +81,3 @@ public class TestMakeAnAppointment extends PepboysTestSetup { //TestMakeAnAppoin
 
 	  
   }
-
-TestMakeAnAppointment.txt
